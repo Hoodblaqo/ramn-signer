@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090b10"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>RAMN Signer</title><link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{color-scheme:dark;--bg:#090b10;--panel:#11151e;--panel2:#171d29;--line:#242d3b;--muted:#8792a5;--text:#f3f6fb;--accent:#8b7cff;--cyan:#62d8e8;--green:#60d6a1}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 500px at 90% -10%,#25204b 0%,transparent 60%),var(--bg);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+.wrap{width:min(760px,100%);margin:auto;padding:env(safe-area-inset-top) 18px calc(28px + env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;justify-content:space-between;padding:25px 2px 30px}.brand{display:flex;gap:12px;align-items:center}.mark{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#9a8cff,#4ccde0);display:grid;place-items:center;color:#080b12;font-weight:900;font-size:19px;box-shadow:0 8px 28px #7162ff44}.brand strong{display:block;letter-spacing:.13em;font-size:14px}.brand small{color:var(--muted);font-size:11px;letter-spacing:.16em}.status{font-size:11px;color:var(--green);border:1px solid #245340;background:#10251e;padding:7px 10px;border-radius:30px}
+.hero{padding:22px 4px 26px}.eyebrow{color:var(--cyan);font-size:11px;letter-spacing:.2em;font-weight:700}.hero h1{font-size:clamp(34px,8vw,52px);line-height:1.02;letter-spacing:-.055em;margin:12px 0}.hero p{color:#a8b1c0;line-height:1.55;max-width:500px;margin:0}
+.panel{background:linear-gradient(145deg,#151b27,#10141d);border:1px solid var(--line);border-radius:22px;padding:18px;margin:14px 0;box-shadow:0 16px 45px #0003}.panelhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.panelhead strong{font-size:14px}.tag{font-size:10px;color:#b9b0ff;background:#282348;padding:6px 9px;border-radius:20px;letter-spacing:.08em}
+.drop{border:1.5px dashed #414b60;border-radius:17px;padding:27px 15px;text-align:center;background:#0d1119;transition:.2s}.drop.active{border-color:var(--cyan);background:#10212a}.fileicon{width:48px;height:48px;border-radius:15px;margin:0 auto 13px;background:#22203c;color:#b4aaff;display:grid;place-items:center;font-size:22px}.drop b{display:block;font-size:15px}.drop p{color:var(--muted);font-size:12px;margin:7px 0 15px}.pick{display:inline-flex;align-items:center;justify-content:center;background:#e9e8ff;color:#141322;padding:11px 17px;border-radius:11px;font-weight:750;font-size:13px;border:0}
+input[type=file]{display:none}.fileinfo{display:none;margin-top:13px;background:#0c1119;border:1px solid var(--line);border-radius:13px;padding:12px;align-items:center;gap:11px}.fileinfo.show{display:flex}.filebadge{background:#1d2b38;color:var(--cyan);padding:10px;border-radius:10px;font-weight:800}.filemeta{min-width:0;flex:1}.filemeta b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}.filemeta small{color:var(--muted);font-size:11px}.remove{background:none;border:0;color:#9aa4b4;font-size:20px;padding:5px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.btn{border:1px solid var(--line);border-radius:13px;padding:14px 12px;background:#1a2130;color:var(--text);font-weight:700;font-size:13px}.btn.primary{background:linear-gradient(100deg,#9384ff,#64d9e8);color:#080b12;border:0}.btn:disabled{opacity:.35}
+.steps{display:grid;gap:13px}.step{display:flex;gap:12px;align-items:flex-start}.num{width:27px;height:27px;flex:none;border:1px solid #45405f;border-radius:9px;color:#b5aaff;display:grid;place-items:center;font-size:12px;font-weight:800}.step b{font-size:13px}.step p{color:var(--muted);font-size:12px;line-height:1.45;margin:4px 0 0}
+.notice{border:1px solid #4a3c25;background:#211b12;border-radius:15px;padding:13px 14px;color:#d9c39a;font-size:12px;line-height:1.5;margin-top:14px}.notice strong{color:#f4dba9}.log{color:var(--muted);font-size:11px;line-height:1.5;margin-top:12px;min-height:17px}
+footer{text-align:center;color:#626e80;font-size:10px;letter-spacing:.12em;padding:25px 0 8px}
+@media(min-width:650px){.wrap{padding-left:28px;padding-right:28px}.panel{padding:22px}.hero{padding-top:32px}}
+</style></head>
+<body><main class="wrap">
+<header><div class="brand"><div class="mark">R</div><div><strong>RAMN</strong><small>SIGNER</small></div></div><div class="status">● LOCAL MODE</div></header>
+<section class="hero"><div class="eyebrow">IPA WORKFLOW / iOS</div><h1>Sign it.<br><span style="color:#a99cff">Your way.</span></h1><p>Prepare an IPA on your iPhone and hand it off to ESign. Your files stay on your device.</p></section>
+<section class="panel"><div class="panelhead"><strong>01 / Select application</strong><span class="tag">IPA FILE</span></div>
+<div class="drop" id="drop"><div class="fileicon">⇧</div><b>Choose an IPA file</b><p>Pick an .ipa from Files on your iPhone</p><label class="pick" for="ipa">Browse Files</label><input id="ipa" type="file" accept=".ipa,application/octet-stream"></div>
+<div class="fileinfo" id="fileinfo"><div class="filebadge">IPA</div><div class="filemeta"><b id="filename">—</b><small id="filesize">—</small></div><button class="remove" id="remove" aria-label="Remove file">×</button></div>
+<div class="actions"><button class="btn" id="clear" disabled>Clear selection</button><button class="btn primary" id="share" disabled>Send to ESign ↗</button></div><div class="log" id="log" aria-live="polite">Waiting for an IPA file.</div></section>
+<section class="panel"><div class="panelhead"><strong>02 / ESign handoff</strong><span class="tag">ON DEVICE</span></div><div class="steps">
+<div class="step"><div class="num">1</div><div><b>Select your IPA</b><p>Choose the app package from the iOS Files picker above.</p></div></div>
+<div class="step"><div class="num">2</div><div><b>Open the iOS share sheet</b><p>Tap “Send to ESign” and choose ESign if it appears in the share options.</p></div></div>
+<div class="step"><div class="num">3</div><div><b>Sign inside ESign</b><p>ESign performs the signing with its own configured certificate. Finish the signing and installation steps there.</p></div></div></div>
+<div class="notice"><strong>Important:</strong> RAMN Signer cannot read ESign’s private certificate storage or sign the IPA itself from Safari. The share sheet only hands the selected file to apps that support receiving it. If ESign does not appear, use the Files app’s Share / Open In flow or continue directly in ESign.</div></section>
+<footer>RAMN SIGNER · FILES STAY ON DEVICE · NO CERTIFICATE UPLOAD</footer>
+</main>
+<script>
+const input=document.getElementById('ipa'),info=document.getElementById('fileinfo'),nameEl=document.getElementById('filename'),sizeEl=document.getElementById('filesize'),share=document.getElementById('share'),clear=document.getElementById('clear'),log=document.getElementById('log'),drop=document.getElementById('drop');
+let selected=null;
+const fmt=n=>n<1024*1024?(n/1024).toFixed(1)+' KB':(n/1024/1024).toFixed(1)+' MB';
+function setFile(f){if(!f)return;if(!f.name.toLowerCase().endsWith('.ipa')){log.textContent='That file does not look like an IPA. Choose a .ipa file.';return}selected=f;nameEl.textContent=f.name;sizeEl.textContent=fmt(f.size)+' · stored only in this page session';info.classList.add('show');share.disabled=false;clear.disabled=false;log.textContent='IPA ready. No file has been uploaded.'}
+function reset(){selected=null;input.value='';info.classList.remove('show');share.disabled=true;clear.disabled=true;log.textContent='Waiting for an IPA file.'}
+input.addEventListener('change',()=>setFile(input.files&&input.files[0]));clear.addEventListener('click',reset);document.getElementById('remove').addEventListener('click',reset);
+for(const ev of ['dragenter','dragover'])drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('active')});
+for(const ev of ['dragleave','drop'])drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('active')});
+drop.addEventListener('drop',e=>setFile(e.dataTransfer.files&&e.dataTransfer.files[0]));
+share.addEventListener('click',async()=>{if(!selected)return;try{if(navigator.share&&navigator.canShare&&navigator.canShare({files:[selected]})){await navigator.share({files:[selected],title:selected.name,text:'Open this IPA in ESign to sign it.'});log.textContent='Share sheet opened. Choose ESign if it is listed.'}else{const u=URL.createObjectURL(selected),a=document.createElement('a');a.href=u;a.download=selected.name;a.click();setTimeout(()=>URL.revokeObjectURL(u),30000);log.textContent='File download started. Open it from Files and use Share / Open In to send it to ESign.'}}catch(e){if(e.name==='AbortError')log.textContent='Share cancelled.';else log.textContent='Could not open sharing. Try opening the IPA from Files and sharing it to ESign.'}});
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script></body></html>
